@@ -20,6 +20,21 @@ bears$MONTH<- as.factor(bears$MONTH)
 
 ## Model LENGTH ~ NECK  this is an example  
 
+
+```{r}
+simp <- lm(LENGTH~HEADLEN,data=bears)
+plot(LENGTH~HEADLEN,data=bears)
+abline(simp)
+summary.lm(simp)
+```
+
+```{r}
+simp <- lm(LENGTH~CHEST,data=bears)
+plot(LENGTH~CHEST,data=bears)
+abline(simp)
+summary.lm(simp)
+```
+
 ```{r}
 simp <- lm(LENGTH~NECK,data=bears)
 plot(LENGTH~NECK,data=bears)
@@ -27,17 +42,9 @@ abline(simp)
 summary.lm(simp)
 ```
 
-
 ```{r}
-simp <- lm(LENGTH~AGE,data=bears)
-plot(LENGTH~AGE,data=bears)
-abline(simp)
-summary.lm(simp)
-```
-
-```{r}
-simp <- lm(LENGTH~HEADLEN,data=bears)
-plot(LENGTH~HEADLEN,data=bears)
+simp <- lm(LENGTH~WEIGHT,data=bears)
+plot(LENGTH~WEIGHT,data=bears)
 abline(simp)
 summary.lm(simp)
 ```
@@ -50,18 +57,20 @@ summary.lm(simp)
 ```
 
 ```{r}
-simp <- lm(LENGTH~CHEST,data=bears)
-plot(LENGTH~CHEST,data=bears)
+simp <- lm(LENGTH~AGE,data=bears)
+plot(LENGTH~AGE,data=bears)
 abline(simp)
 summary.lm(simp)
 ```
+## Compare all models that predict LENGTH other than NECK. Then order them from worst to best by its value of Adjusted-Rsquared (bigger is better), or by RSE(residual standard error) where smaller is better.
 
-## now predict the length of a bear who has a neck of 17, 22 and 26
-
-```{r}
-new <- data.frame(NECK=c(17,22,26))
-predict(simp,new)
-predict(simp,new,se.fit=TRUE)
-```
-## Surely there is another variable that can better predict LENGTH than NECK. Find one and compare its performance to that of neck by it value of Adjusted-Rsquared (bigger is better).
-
+The models above provide a representation of the Residual Standard Error.  
+The order is formed from the best to worst individual models.  
+The smallest Residual Standard Error Value is first because smaller is better.  
+This is why the graph for the first model has the most dots that appear the nearest to the abline.  
+The best model is the head length model with the Residual Standard Error value that is 4.23.  
+The second best model is the chest model with a Residual Standard Error value that is 4.93.  
+The third best model is the neck model with a Residual Standard Error value that is 5.37.  
+The fourth best model is the weight model with a Residual Standard Error value that is 5.43.  
+The fifth best model is the head width model with a Residual Standard Error value that is 7.32.  
+The sixth best model is the age model with a Residual Standard Error value that is 7.511.  
